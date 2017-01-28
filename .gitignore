@@ -87,3 +87,7 @@ ENV/
 
 # Rope project settings
 .ropeproject
+.idea/
+no_iframe.html
+with_iframe.html
+src/holmes/log.txt
