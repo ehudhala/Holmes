@@ -12,5 +12,9 @@ There are various parameters to config there for your own running.
 
 ## How to run
 
-In order to run you just need to run `scheduling.py` in the background.
+In order to run you just need to run `scheduling.py`:
+```
+nohup src/holmes/scheduling.py &
+```
+
 I use an EC2 instance to run this :)
