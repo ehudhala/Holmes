@@ -114,7 +114,11 @@ def schedule_forever():
     """
     scheduler = Scheduler(time.time, time.sleep)
     schedule_activities(scheduler)
-    scheduler.run()
+    try:
+        scheduler.run()
+    except KeyboardInterrupt:
+        logger.debug('Got SIGTERM! Terminating...')
+
 
 if __name__ == '__main__':
     schedule_forever()
