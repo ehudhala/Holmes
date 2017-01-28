@@ -15,3 +15,4 @@ EMAIL_DESTINATION = u''
 GMAIL_PASSWORD = u''
 GMAIL_ADDR = u''
 
+LOG_PATH = '/var/log/holmes.log'
