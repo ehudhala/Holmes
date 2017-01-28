@@ -43,10 +43,12 @@ if __name__ == '__main__':
         service.stop()
         print 'Stopped holmesd'
     elif cmd == 'restart':
-        service.stop()
-        print 'Stopped holmesd'
-        service.start()
-        print 'Started holmesd'
+        if service.is_running():
+            service.stop()
+            print 'Stopped holmesd'
+        if not service.is_running():
+            service.start()
+            print 'Started holmesd'
     elif cmd == 'status':
         if service.is_running():
             print "Service is running."
