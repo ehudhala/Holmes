@@ -4,7 +4,7 @@ from arrow import Arrow
 from dateutil import tz
 from envelopes import Envelope, GMailSMTP
 
-from holmes.config import EMAIL_DESTINATION, GMAIL_PASSWORD, GMAIL_ADDR
+from holmes.config import EMAIL_DESTINATION, GMAIL_PASSWORD, GMAIL_ADDR, LOG_PATH
 
 ISRAEL_TZ = tz.gettz('Asia/Jerusalem')
 
@@ -22,7 +22,7 @@ def create_logger(module_name):
     stream_handler.setLevel(logging.DEBUG)
     stream_handler.setFormatter(formatter)
 
-    file_handler = logging.FileHandler('log.txt', encoding='utf8')
+    file_handler = logging.FileHandler(LOG_PATH, encoding='utf8')
     file_handler.setLevel(logging.DEBUG)
     file_handler.setFormatter(formatter)
 
