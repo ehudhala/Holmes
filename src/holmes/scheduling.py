@@ -4,8 +4,9 @@ from sched import scheduler as Scheduler
 
 from activities import get_current_and_next_week_activities
 from authentication import create_session
-from config import RESERVATION_NAMES
-from utils import create_logger, holmes_place_now, readable_time, send_mail, HolmesPlaceException
+
+from holmes.config import RESERVATION_NAMES
+from holmes.utils import create_logger, holmes_place_now, readable_time, send_mail, HolmesPlaceException
 
 DEFAULT_WAIT_TIME = 60
 WAIT_EXPONENT = 1.5

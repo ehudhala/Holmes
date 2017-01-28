@@ -1,7 +1,8 @@
 import bs4
 import requests
-from config import USERNAME, PASSWORD
-from utils import create_logger, AuthenticationError
+
+from holmes.config import USERNAME, PASSWORD
+from holmes.utils import create_logger, AuthenticationError
 
 LOGIN_URL = 'http://www.holmesplace.co.il/user/login'
 GIVAT_SHMUEL_CLUB_LESSONS_URL = 'http://www.holmesplace.co.il/clubs_services/club/56676/lessons'

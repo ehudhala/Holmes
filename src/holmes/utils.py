@@ -1,10 +1,10 @@
 import logging
 
 from arrow import Arrow
-from config import EMAIL_DESTINATION, GMAIL_PASSWORD, GMAIL_ADDR
 from dateutil import tz
-from envelopes import Envelope
-from envelopes import GMailSMTP
+from envelopes import Envelope, GMailSMTP
+
+from holmes.config import EMAIL_DESTINATION, GMAIL_PASSWORD, GMAIL_ADDR
 
 ISRAEL_TZ = tz.gettz('Asia/Jerusalem')
 
