@@ -1,4 +1,4 @@
-#!/bin/python
+#!/usr/bin/python
 from service import Service
 
 from holmes.scheduling import schedule_forever
