@@ -82,7 +82,6 @@ class Activity(object):
         """
         return (self.is_favorite and
                 self.require_reserve and
-                self.status == OPEN_FOR_REGISTRATION_STATUS and
                 self.time > holmes_place_now())
 
     @property
