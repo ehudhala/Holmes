@@ -43,7 +43,7 @@ def authenticate_against_asp(session):
     """
     for _ in xrange(10):
         lessons_page = session.get(GIVAT_SHMUEL_CLUB_LESSONS_URL).content
-        lessons_page_soup = bs4.BeautifulSoup(lessons_page)
+        lessons_page_soup = bs4.BeautifulSoup(lessons_page, 'html.parser')
         # In their javascript they recognize their own iframe by its height.
         iframe_element = lessons_page_soup.find('iframe', {'height': 3000})
         if iframe_element is not None:
