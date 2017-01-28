@@ -1,4 +1,8 @@
 #!/usr/bin/python
+"""
+This code is the code the service module suggests using.
+It's bad but works.
+"""
 from service import Service
 
 from holmes.scheduling import schedule_forever
@@ -19,11 +23,15 @@ if __name__ == '__main__':
 
     if cmd == 'start':
         service.start()
+        print 'Started holmesd'
     elif cmd == 'stop':
         service.stop()
+        print 'Stopped holmesd'
     elif cmd == 'restart':
         service.stop()
+        print 'Stopped holmesd'
         service.start()
+        print 'Started holmesd'
     elif cmd == 'status':
         if service.is_running():
             print "Service is running."
