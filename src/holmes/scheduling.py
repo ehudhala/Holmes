@@ -1,6 +1,7 @@
 # coding=utf-8
 import time
 from sched import scheduler as Scheduler
+from smtplib import SMTPAuthenticationError
 
 from activities import get_current_and_next_week_activities
 from authentication import create_session
@@ -52,8 +53,11 @@ def register_and_inform(activity, reservation_names):
     session = create_session()
     activity.register(session, reservation_names)
     logger.info(u'Registered to {}'.format(activity))
-    send_mail(u"Registered to {}".format(activity),
-              u"You can cancel it at http://www.holmesplace.co.il/clubs_services/club/56676/lessons")
+    try:
+        send_mail(u"Registered to {}".format(activity),
+                  u"You can cancel it at http://www.holmesplace.co.il/clubs_services/club/56676/lessons")
+    except SMTPAuthenticationError:
+        logger.exception(u"Couldn't send mail for registration of {}".format(activity))
 
 
 def schedule_activities(scheduler, scheduled=None):
@@ -70,8 +74,8 @@ def schedule_activities(scheduler, scheduled=None):
                       By default it is empty.
     """
     scheduled = scheduled or []
-
     logger.info(u'Scheduling Activities for {}'.format(readable_time(holmes_place_now())))
+    
     try:
         for activity in get_activities_to_schedule(scheduled):
             schedule_activity_registration(activity, scheduler)
@@ -112,10 +116,10 @@ def schedule_forever():
     """
     Schedules activities registration forever :)
     """
-    scheduler = Scheduler(time.time, time.sleep)
-    schedule_activities(scheduler)
-    scheduler.run()
-
-if __name__ == '__main__':
-    schedule_forever()
-
+    while True:
+        try:
+            scheduler = Scheduler(time.time, time.sleep)
+            schedule_activities(scheduler)
+            scheduler.run()
+        except Exception:
+            logger.exception("Unhandled exception has occurred !")
