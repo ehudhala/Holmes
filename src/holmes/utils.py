@@ -1,5 +1,3 @@
-import logging
-
 from arrow import Arrow
 from dateutil import tz
 from envelopes import Envelope, GMailSMTP
