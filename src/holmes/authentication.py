@@ -1,13 +1,14 @@
+import logging
+
 import bs4
 import requests
-
 from holmes.config import USERNAME, PASSWORD
-from holmes.utils import create_logger, AuthenticationError
+from holmes.utils import AuthenticationError
 
 LOGIN_URL = 'http://www.holmesplace.co.il/user/login'
 GIVAT_SHMUEL_CLUB_LESSONS_URL = 'http://www.holmesplace.co.il/clubs_services/club/56676/lessons'
 
-logger = create_logger(__name__)
+logger = logging.getLogger(__name__)
 
 
 def authenticate(session, username=USERNAME, password=PASSWORD):

@@ -1,14 +1,14 @@
 import json
+import logging
 
 from arrow import Arrow
-
 from holmes.config import COMPANY_ID, BRANCH_ID, USER_ID
-from holmes.utils import create_logger, ISRAEL_TZ, holmes_place_now, readable_time, CouldNotRegisterError, CouldNotGetActivitiesError
+from holmes.utils import ISRAEL_TZ, holmes_place_now, readable_time, CouldNotRegisterError, CouldNotGetActivitiesError
 
 OPEN_FOR_REGISTRATION_STATUS = 'Open'
 GET_ACTIVITIES_URL = 'http://api.holmesplace.co.il/WebSite/HPCalendar.aspx/GetFilteredActivities'
 
-logger = create_logger(__name__)
+logger = logging.getLogger(__name__)
 
 
 class Activity(object):

@@ -1,13 +1,13 @@
 # coding=utf-8
+import logging
 import time
 from sched import scheduler as Scheduler
 from smtplib import SMTPAuthenticationError
 
-from activities import get_current_and_next_week_activities
-from authentication import create_session
-
+from holmes.activities import get_current_and_next_week_activities
+from holmes.authentication import create_session
 from holmes.config import RESERVATION_NAMES
-from holmes.utils import create_logger, holmes_place_now, readable_time, send_mail, HolmesPlaceException
+from holmes.utils import holmes_place_now, readable_time, send_mail, HolmesPlaceException
 
 DEFAULT_WAIT_TIME = 60
 WAIT_EXPONENT = 1.5
@@ -16,7 +16,7 @@ MAX_WEIGHT_TIME = DEFAULT_WAIT_TIME * (WAIT_EXPONENT ** 12)
 
 HOUR_SECONDS = 60 * 60
 
-logger = create_logger(__name__)
+logger = logging.getLogger(__name__)
 
 
 def register_and_reschedule(scheduler, activity, reservation_names, wait_time=DEFAULT_WAIT_TIME):
@@ -75,7 +75,7 @@ def schedule_activities(scheduler, scheduled=None):
     """
     scheduled = scheduled or []
     logger.info(u'Scheduling Activities for {}'.format(readable_time(holmes_place_now())))
-    
+
     try:
         for activity in get_activities_to_schedule(scheduled):
             schedule_activity_registration(activity, scheduler)
